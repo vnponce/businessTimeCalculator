@@ -21,5 +21,9 @@ test('Dec 24 at 20:30 plus 1h must return Dec 25 at 21:30:00', () => {
     expect(businessTime(holiday, new Date('2019-12-24T20:30:00'), 60 * 60)).toEqual(expected);
 });
 
+test('Dec 25 at 00:00 plus 1s must return Dec 25 at 21:30:00', () => {
+    const expected = new Date('2019-12-25T21:00:01');
+    expect(businessTime(holiday, new Date('2019-12-25T00:00:00'), 1)).toEqual(expected);
+});
 
 // @todo test validate holiday object, start is date and end is date, also second arg must be date object and durations must be a integer
