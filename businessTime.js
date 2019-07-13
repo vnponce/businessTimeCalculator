@@ -5,30 +5,43 @@ function businessTime(holiday, time, duration) {
     loggerTime('start => ', start);
     loggerTime('end => ', end);
     loggerTime('time => ', time);
+    console.log(duration);
     if(time < start && addTime(time, duration) > start){
-        console.log('start before start and has overlaping, so needs to end before end');
         const timeToStart = diffBetweenDates(start, time);
+        console.log('timeToStart', timeToStart);
         const overlapingTime = diffBetweenDates(addTime(time, duration), addTime(start, duration));
+        console.log('overlapingTime', overlapingTime);
         const endPlusOverlaping = addTime(end, overlapingTime);
+        console.log(endPlusOverlaping);
         return endPlusOverlaping;
     }
-    if(time >= start && time < end) {
+    else if(time >= start && time < end) {
         console.log('time < end');
         return addTime(end, duration);
     }
     console.log('else time < end');
-    return addTime(time, duration);
+    const response = addTime(time, duration);
+    loggerTime('response => ', response);
+    return response;
 }
 
 // @todo create test
 function addTime(date, duration) {
-    date.setSeconds(date.getSeconds() + duration);
-    return date;
+    loggerTime('addTime =>', date);
+    const d = date;
+    loggerTime('d =>', d);
+    d.setSeconds(d.getSeconds() + duration);
+    loggerTime('after->addTime =>', date);
+    loggerTime('after->d =>', d);
+    return d;
 }
 
 // @todo create test
 function diffBetweenDates(first, second) {
+    loggerTime('first => ', first);
+    loggerTime('second => ', second);
     const diff = (first.getTime() - second.getTime()) / 1000;
+    console.log('diff => ', diff);
     return diff;
 }
 
