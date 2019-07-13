@@ -15,3 +15,8 @@ test('Dec 24 at 21:00 plus 1s must return Dec 25 at 21:00:01', () => {
     const expected = new Date('2019-12-25T21:00:01');
     expect(businessTime(holiday, new Date('2019-12-24T21:00:00'), 1)).toEqual(expected);
 });
+
+test.only('Dec 24 at 20:30 plus 1h must return Dec 25 at 21:30:00', () => {
+    const expected = new Date('2019-12-25T21:30:00');
+    expect(businessTime(holiday, new Date('2019-12-24T20:30:00'), 60 * 60)).toEqual(expected);
+});
