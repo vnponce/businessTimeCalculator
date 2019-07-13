@@ -50,3 +50,52 @@ test('Dec 25 at 00:00 subs 1s must return Dec 24 at 20:59:59', () => {
 });
 
 // @todo test validate holiday object, start is date and end is date, also second arg must be date object and durations must be a integer
+test('Holiday not exist must return an error', () => {
+    const expected = 'holiday must exist as Object';
+    expect(businessTime()).toEqual(expected);
+});
+
+test('Wrong holiday format must return an error', () => {
+    const expected = 'holiday must exist as Object';
+    expect(businessTime([])).toEqual(expected);
+});
+
+test('Start property not exist must return an error', () => {
+    const expected = 'Start must exist as Date';
+    expect(businessTime({}, new Date('2019-12-25T00:00:00'), -1)).toEqual(expected);
+});
+
+test('Start property is not a Date must return an error', () => {
+    const expected = 'Start must exist as Date';
+    expect(businessTime({start: 'not-date'}, new Date('2019-12-25T00:00:00'), -1)).toEqual(expected);
+});
+
+test('End property not exist must return an error', () => {
+    const expected = 'End must exist as Date';
+    expect(businessTime({start: new Date()}, new Date('2019-12-25T00:00:00'), -1)).toEqual(expected);
+});
+
+test('End property is not a Date must return an error', () => {
+    const expected = 'End must exist as Date';
+    expect(businessTime({start: new Date(), end: 'not-date'}, new Date('2019-12-25T00:00:00'), -1)).toEqual(expected);
+});
+
+test('Time property not exist must return an error', () => {
+    const expected = 'Time must exist as Date';
+    expect(businessTime(holiday)).toEqual(expected);
+});
+
+test('Time property is not a Date must return an error', () => {
+    const expected = 'Time must exist as Date';
+    expect(businessTime(holiday, 'not-date')).toEqual(expected);
+});
+
+test('Duration property not exist must return an error', () => {
+    const expected = 'Duration must exist as Number';
+    expect(businessTime(holiday, new Date('2019-12-25T00:00:00'))).toEqual(expected);
+});
+
+test('Duration property is not a Date must return an error', () => {
+    const expected = 'Duration must exist as Number';
+    expect(businessTime(holiday,new Date('2019-12-25T00:00:00'), 'not-int')).toEqual(expected);
+});
