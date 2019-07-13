@@ -26,7 +26,7 @@ function businessTime(holiday, time, duration) {
 function addTime(date, duration) {
     loggerTime('addTime, date => ', date);
     console.log('addTime, duration =>', duration);
-    // @todo best this approach and test it. Cloning date.
+    // @todo do a best approach and test it. Cloning date.
     const d = new Date(date.getTime());
     d.setSeconds(d.getSeconds() + duration);
     return d;

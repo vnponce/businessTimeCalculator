@@ -16,12 +16,13 @@ test('Dec 1st subs 1s must return Nov 30 at 23:59:59', () => {
     expect(businessTime(holiday, new Date('2019-12-01T00:00:00'), -1)).toEqual(expected);
 });
 
+
 test('Dec 24 at 21:00 plus 1s must return Dec 25 at 21:00:01', () => {
     const expected = new Date('2019-12-25T21:00:01');
     expect(businessTime(holiday, new Date('2019-12-24T21:00:00'), 1)).toEqual(expected);
 });
 
-test('Dec 24 at 21:00 1s must return Dec 24 at 20:59:59', () => {
+test('Dec 24 at 21:00 subs 1s must return Dec 24 at 20:59:59', () => {
     const expected = new Date('2019-12-24T20:59:59');
     expect(businessTime(holiday, new Date('2019-12-24T21:00:00'), -1)).toEqual(expected);
 });
@@ -32,7 +33,13 @@ test('Dec 24 at 20:30 plus 1h must return Dec 25 at 21:30:00', () => {
     expect(businessTime(holiday, new Date('2019-12-24T20:30:00'), 60 * 60)).toEqual(expected);
 });
 
-test('Dec 25 at 00:00 plus 1s must return Dec 25 at 21:30:00', () => {
+test('Dec 24 at 20:30 subs 1s must return Dec 24 at 20:29:59', () => {
+    const expected = new Date('2019-12-24T20:29:59');
+    expect(businessTime(holiday, new Date('2019-12-24T20:30:00'), -1)).toEqual(expected);
+});
+
+
+test('Dec 25 at 00:00 plus 1s must return Dec 25 at 21:00:01', () => {
     const expected = new Date('2019-12-25T21:00:01');
     expect(businessTime(holiday, new Date('2019-12-25T00:00:00'), 1)).toEqual(expected);
 });
