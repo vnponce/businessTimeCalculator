@@ -1,0 +1,17 @@
+const businessTime = require('./businessTime');
+
+// Christmas 2019, 9pm Dec 24th to 9pm Dec 25th
+const holiday = {
+    start: new Date('2019-12-24T21:00:00'),
+    end: new Date('2019-12-25T21:00:00')
+};
+
+test('Dec 1st plus 1hr must return Dec 1st at 1:00', () => {
+    const expected = new Date('2019-12-01T01:00:00');
+    expect(businessTime(holiday, new Date('2019-12-01T00:00:00'), 60 * 60)).toEqual(expected);
+});
+
+test('Dec 24 at 21:00 plus 1s must return Dec 25 at 21:00:01', () => {
+    const expected = new Date('2019-12-25T21:00:01');
+    expect(businessTime(holiday, new Date('2019-12-24T21:00:00'), 1)).toEqual(expected);
+});
