@@ -17,7 +17,8 @@ function businessTime(holiday, time, duration) {
     }
     else if(time >= start && time < end) {
         console.log('time < end');
-        return addTime(end, duration);
+        if(duration > 0) return addTime(end, duration);
+        return addTime(start, duration);
     }
     console.log('else time < end');
     const response = addTime(time, duration);
