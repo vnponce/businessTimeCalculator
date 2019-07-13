@@ -1,4 +1,4 @@
-module.exports = businessTime;
+export default businessTime;
 
 function businessTime(holiday, time, duration) {
     const { start, end } = holiday;
@@ -9,7 +9,7 @@ function businessTime(holiday, time, duration) {
     if(time < start && addTime(time, duration) > start){
         const timeToStart = diffBetweenDates(start, time);
         console.log('timeToStart', timeToStart);
-        const overlapingTime = diffBetweenDates(addTime(time, duration), addTime(start, duration));
+        const overlapingTime = diffBetweenDates(addTime(time, duration), start);
         console.log('overlapingTime', overlapingTime);
         const endPlusOverlaping = addTime(end, overlapingTime);
         console.log(endPlusOverlaping);
@@ -27,8 +27,9 @@ function businessTime(holiday, time, duration) {
 
 // @todo create test
 function addTime(date, duration) {
+    // @todo best this approach and test it. Cloning date.
     loggerTime('addTime =>', date);
-    const d = date;
+    const d = new Date(date.getTime());
     loggerTime('d =>', d);
     d.setSeconds(d.getSeconds() + duration);
     loggerTime('after->addTime =>', date);
